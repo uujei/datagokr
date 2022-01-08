@@ -1,0 +1,5 @@
+click
+python-dotenv
+pendulum
+pydantic
+requests

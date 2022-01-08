@@ -1,0 +1,58 @@
+import os
+from datetime import datetime
+
+from setuptools import find_namespace_packages, setup
+
+from setup_helpers import get_requirements
+
+PATH_ROOT = os.path.dirname(__file__)
+REQUIREMENTS = "requirements.txt"
+
+# PACKAGE INFO
+NAME = "datagokr"
+AUTHOR = "Woojin cho"
+AUTHOR_EMAIL = "woojin.cho@gmail.com"
+DESCRIPTION = ""
+KEYWORDS = ["REST API", "Open API", "data.go.kr", "data portal"]
+
+# REQUIRES
+VERSION_CONFIG = {
+    "starting_version": f"{datetime.now().strftime('%Y.%m.0')}",
+    "template": "{tag}",
+}
+INSTALL_REQUIRES = get_requirements(REQUIREMENTS)
+PACKAGES = find_namespace_packages()  #
+ZIP_SAFE = False
+PYTHON_REQUIRES = ">=3.8"
+CLASSIFIERS = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+]
+
+# PYPI
+URL = ""
+DOWNLOAD_URL = ""
+
+# CLI - CLI 등록은 여기에
+ENTRY_POINTS = {
+    "console_scripts": [],
+}
+
+# SETUP
+setup(
+    name=NAME,
+    version_config=VERSION_CONFIG,
+    description=DESCRIPTION,
+    author=AUTHOR,
+    author_email=AUTHOR_EMAIL,
+    url=URL,
+    download_url=DOWNLOAD_URL,
+    install_requires=INSTALL_REQUIRES,
+    packages=PACKAGES,
+    entry_points=ENTRY_POINTS,
+    keywords=KEYWORDS,
+    python_requires=PYTHON_REQUIRES,
+    zip_safe=ZIP_SAFE,
+    classifiers=CLASSIFIERS,
+)
