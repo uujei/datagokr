@@ -28,6 +28,8 @@ class DataType(str, Enum):
 ################################################################################
 # ABSTRACT
 class AsosHourlyInfo(DataGoKr):
+    __version__ = "2.0"
+
     baseUrl: HttpUrl = "http://apis.data.go.kr/1360000/AsosHourlyInfoService"
     dataType: Optional[DataType] = "JSON"  # Only JSON available yet.
     serviceKey: str = KMA_API_KEY

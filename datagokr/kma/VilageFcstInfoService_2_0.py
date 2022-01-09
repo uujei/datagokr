@@ -34,6 +34,8 @@ class VilageFcstVersionFtype(str, Enum):
 # [Abstract] Abstract for VilageFcst
 ################################################################################
 class VilageFcstInfo(DataGoKr):
+    __version__ = "2.0"
+
     baseUrl: HttpUrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0"
     dataType: Optional[DataType] = "JSON"  # Only JSON available yet.
     serviceKey: str = KMA_API_KEY

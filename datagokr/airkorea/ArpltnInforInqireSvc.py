@@ -34,6 +34,8 @@ class DataTerm(str, Enum):
 # [Abstract] Abstract for VilageFcst
 ################################################################################
 class ArpltnInforInqireSvc(DataGoKr):
+    __version__ = "1.7.2"
+
     baseUrl: HttpUrl = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc"
     returnType: ReturnType = "JSON"
     serviceKey: str = AIRKOREA_API_KEY
