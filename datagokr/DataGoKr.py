@@ -50,8 +50,8 @@ class DataGoKr(BaseModel, abc.ABC):
         endpoint = self.get_endpoint()
         response = self._request(endpoint=endpoint)
         if response["header"]["resultCode"] != "00":
-            print(f"CODE[{response['header']['resultCode']}]: {response['header']['resultMsg']}")
-            return None
+            _msg = f"CODE[{response['header']['resultCode']}]: {response['header']['resultMsg']}"
+            raise ReferenceError(_msg)
 
         # extract records from body
         body = response["body"]
