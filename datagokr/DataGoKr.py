@@ -89,6 +89,10 @@ class DataGoKr(BaseModel, abc.ABC):
     def get_records(self, sep="___"):
         items = self.request()
         items = list(map(self._drop_empty_fields, items))
+
+        # drop invalid items
+        items = [_ for _ in items if _ is not None]
+
         if self.__key_name__ is None or self.__value_name__ is None:
             return [self.__RecordModel__(**item) for item in items]
 
@@ -104,7 +108,7 @@ class DataGoKr(BaseModel, abc.ABC):
         if self.__RecordModel__ is None:
             return records
 
-        return [self.__RecordModel__(**record) for record in records]
+        return [self._record_to_model(self.__RecordModel__, record) for record in records]
 
     @staticmethod
     def _request(endpoint):
@@ -117,6 +121,10 @@ class DataGoKr(BaseModel, abc.ABC):
 
     @staticmethod
     def _items_to_records(Model, items, key_name, value_name, index_names, sep):
+
+        # required fields
+        required = Model.schema().get("required", [])
+
         if index_names is None:
             record = dict()
             for item in items:
@@ -138,7 +146,16 @@ class DataGoKr(BaseModel, abc.ABC):
         ]
 
     @staticmethod
+    def _record_to_model(Model, record):
+        try:
+            return Model(**record)
+        except ValidationError as ve:
+            _msg = "_".join([f"{k}:{v}" for k, v in record.items()])
+            logger.warn(f"{ve} - {_msg}")
+
+    @staticmethod
     def _drop_empty_fields(item: dict):
+        # drop empty fields
         return {k: v for k, v in item.items() if v != ""}
 
     @staticmethod

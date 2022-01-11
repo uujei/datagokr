@@ -140,7 +140,7 @@ class UnityAirEnvrnIdexSnstiveAboveMsrstnList(ArpltnInforInqireSvc):
 ################################################################################
 # Output Model
 class CtprvnRltmMesureDnstyModel(BaseModel):
-    dataTime: str
+    dataTime: Optional[str]
     stationName: str
     mangName: str
     sidoName: str
