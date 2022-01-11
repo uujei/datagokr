@@ -108,7 +108,8 @@ class DataGoKr(BaseModel, abc.ABC):
         if self.__RecordModel__ is None:
             return records
 
-        return [self._record_to_model(self.__RecordModel__, record) for record in records if record is not None]
+        records = [self._record_to_model(self.__RecordModel__, record) for record in records]
+        return [r for r in records if r is not None]
 
     @staticmethod
     def _request(endpoint):
