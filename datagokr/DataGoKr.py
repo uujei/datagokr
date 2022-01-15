@@ -1,13 +1,11 @@
 import abc
 import logging
 import os
-from datetime import datetime
 from typing import List, Optional
 from urllib.parse import quote_plus, unquote, urlencode
 
 import pendulum
 import requests
-from dotenv import load_dotenv
 from pydantic import BaseModel, Field, HttpUrl, SecretStr, ValidationError
 
 # logging
